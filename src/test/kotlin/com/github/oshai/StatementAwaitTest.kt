@@ -9,7 +9,7 @@ class StatementAwaitTest {
     @Test
     fun sendPreparedStatement() = runBlocking {
         val queryStatement = QueryStatement(statement = "select 1")
-        val mockConnection = JavaMockConnection()
+        val mockConnection = MockConnection()
         val sendPreparedStatement = queryStatement.sendPreparedStatement(mockConnection)
         assertEquals(mockConnection.queryResult, sendPreparedStatement.awaitQuery())
     }

@@ -2,37 +2,49 @@ package com.github.oshai
 
 import com.github.mauricio.async.db.Connection
 import com.github.mauricio.async.db.QueryResult
-import scala.Option
+import scala.*
 import scala.collection.Seq
+import scala.compat.java8.`FutureConverters$`
+import scala.concurrent.Awaitable
+import scala.concurrent.CanAwait
+import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
+import scala.reflect.ClassTag
+import scala.util.Try
 
-//class MockConnection : Connection {
-//
-//    val queryResult = QueryResult(0, "success", Option.empty())
-//
-//    override fun disconnect(): Future<Connection> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun connect(): Future<Connection> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun isConnected(): Boolean {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun sendQuery(query: String?): Future<QueryResult> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun `sendPreparedStatement$default$2`(): Seq<Any> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override fun sendPreparedStatement(query: String?, values: Seq<Any>?): Future<QueryResult> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//
-//}
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.TimeoutException
+
+class MockConnection : Connection {
+
+    internal var queryResult = QueryResult(0L, "success", null)
+
+    override fun disconnect(): Future<Connection>? {
+        return null
+    }
+
+    override fun connect(): Future<Connection>? {
+        return null
+    }
+
+    override fun isConnected(): Boolean {
+        return false
+    }
+
+    override fun sendQuery(s: String): Future<QueryResult>? {
+        return null
+    }
+
+    override fun sendPreparedStatement(s: String, seq: Seq<Any>): Future<QueryResult> {
+        return `FutureConverters$`.`MODULE$`.toScala(CompletableFuture.completedFuture(queryResult))
+    }
+
+    override fun `sendPreparedStatement$default$2`(): Seq<Any>? {
+        return null
+    }
+
+    override fun <A> inTransaction(function1: Function1<Connection, Future<A>>, executionContext: ExecutionContext): Future<A>? {
+        return null
+    }
+}
