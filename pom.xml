@@ -18,6 +18,12 @@
     <mysql-async.version>0.2.21</mysql-async.version>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>kotlinx</id>
+      <url>https://kotlin.bintray.com/kotlinx/</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
