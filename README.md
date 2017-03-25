@@ -7,10 +7,11 @@ Show your :heart: with a [:star:](https://github.com/oshai/kotlin-coroutines-mys
 ## Getting started
 
 ```kotlin
-        val connection : Connection = ...
-        val queryStatement = QueryStatement(statement = "select ...")
-        val sendPreparedStatement = queryStatement.sendPreparedStatement(connection)
-        sendPreparedStatement.awaitQuery()
+val connection : Connection = ...
+val queryStatement = QueryStatement(statement = "select ...")
+val preparedStatement = queryStatement.sendPreparedStatement(connection)
+...
+preparedStatement.awaitQuery()
 ```
 ## Download
 
