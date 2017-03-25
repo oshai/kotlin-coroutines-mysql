@@ -5,9 +5,17 @@ Async kotlin mysql client, with coroutine suspending extensions. Based on [kotli
 Show your :heart: with a [:star:](https://github.com/oshai/kotlin-coroutines-mysql/stargazers)
 
 ## Getting started
-TBD
+
+```kotlin
+        val connection : Connection = ...
+        val queryStatement = QueryStatement(statement = "select ...")
+        val sendPreparedStatement = queryStatement.sendPreparedStatement(connection)
+        sendPreparedStatement.awaitQuery()
+```
 ## Download
+
 TBD
+
 ## Contributing
 
 - Pull requests are welcome!
